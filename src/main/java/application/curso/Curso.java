@@ -40,7 +40,7 @@ public class Curso {
     public Curso(CursoInsertDTO dados) {
         this.nome = dados.nome();
         this.descricao = dados.descricao();
-        this.cargaHoraria = dados.duracaoHoras();
+        this.cargaHoraria = dados.cargaHoraria();
         this.status = dados.status();
         this.dataCriacao = dados.dataCriacao();
     }
