@@ -32,4 +32,5 @@ public class Matricula {
     @ManyToOne
     @JoinColumn(name = "curso_id", nullable = false) 
     private Curso curso;
+
 }
