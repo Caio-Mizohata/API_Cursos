@@ -46,19 +46,13 @@ public class MatriculaService {
     }
 
     public MatriculaDTO insert(MatriculaInsertDTO dados) {
-        alunoService.getOne(dados.alunoId());
-        cursoService.getOne(dados.cursoId());
+        Aluno aluno = alunoService.getAluno(dados.alunoId());
+        Curso curso = cursoService.getCurso(dados.cursoId());
 
         Matricula matricula = new Matricula();
         matricula.setStatus(dados.status());
         matricula.setDataMatricula(dados.dataMatricula());
-
-        Aluno aluno = new Aluno();
-        aluno.setId(dados.alunoId());
         matricula.setAluno(aluno);
-
-        Curso curso = new Curso();
-        curso.setId(dados.cursoId());
         matricula.setCurso(curso);
 
         return new MatriculaDTO(matriculaRepo.save(matricula));
@@ -71,19 +65,24 @@ public class MatriculaService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Matrícula não encontrada");
         }
 
-        alunoService.getOne(dados.alunoId());
-        cursoService.getOne(dados.cursoId());
+        Aluno aluno = alunoService.getAluno(dados.alunoId());
+        Curso curso = cursoService.getCurso(dados.cursoId());
+        // Permite atualizar dados parciais pelo metodo PUT
+        if (dados.status() != null) {
+            matricula.get().setStatus(dados.status());
+        }
 
-        matricula.get().setStatus(dados.status());
-        matricula.get().setDataMatricula(dados.dataMatricula());
+        if (dados.dataMatricula() != null) {
+            matricula.get().setDataMatricula(dados.dataMatricula());
+        }
 
-        Aluno aluno = new Aluno();
-        aluno.setId(dados.alunoId());
-        matricula.get().setAluno(aluno);
+        if (dados.alunoId() != null) {
+            matricula.get().setAluno(aluno);
+        }
 
-        Curso curso = new Curso();
-        curso.setId(dados.cursoId());
-        matricula.get().setCurso(curso);
+        if (dados.cursoId() != null) {
+            matricula.get().setCurso(curso);
+        }
 
         return new MatriculaDTO(matriculaRepo.save(matricula.get()));
     }

@@ -17,11 +17,20 @@ public class AlunoService {
         return alunoRepo.findAll().stream().map(AlunoDTO::new).toList();
     }
 
+    public Aluno getAluno(Long id) {
+       Optional<Aluno> aluno = alunoRepo.findById(id);
+
+       if (aluno.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Aluno não encontrado");
+       }
+       return aluno.get();
+    }
+
     public AlunoDTO getOne(Long id) {
        Optional<Aluno> aluno = alunoRepo.findById(id);
 
        if (aluno.isEmpty()) {
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Aluno não encontrado");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Aluno não encontrado");
        }
        return new AlunoDTO(aluno.get());
     }
@@ -36,11 +45,23 @@ public class AlunoService {
         if (aluno.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Aluno não encontrado");
         }
+        // Permite atualizar dados parciais pelo metodo PUT
+        if (dados.nome() != null) {
+            aluno.get().setNome(dados.nome());
+        }
 
-        aluno.get().setNome(dados.nome());
-        aluno.get().setEmail(dados.email());
-        aluno.get().setDataMatricula(dados.dataMatricula());
+        if (dados.email() != null) {
+            aluno.get().setEmail(dados.email());
+        }
 
+        if (dados.telefone() != null) {
+            aluno.get().setTelefone(dados.telefone());
+        }
+
+        if (dados.dataMatricula() != null) {
+            aluno.get().setDataMatricula(dados.dataMatricula());
+        }
+        
         return new AlunoDTO(alunoRepo.save(aluno.get()));
     }
 

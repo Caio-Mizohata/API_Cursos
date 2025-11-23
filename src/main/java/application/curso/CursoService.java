@@ -16,6 +16,15 @@ public class CursoService {
         return cursoRepo.findAll().stream().map(CursoDTO::new).toList();
     }
 
+    public Curso getCurso(Long id) {
+       Optional<Curso> curso = cursoRepo.findById(id);
+
+       if (curso.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Curso não encontrado");
+       }
+       return curso.get();
+    }
+
     public CursoDTO getOne(long id) {
         Optional<Curso> curso = cursoRepo.findById(id);
 
@@ -35,11 +44,26 @@ public class CursoService {
         if (curso.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Curso não encontrado");
         }
+        // Permite atualizar dados parciais pelo metodo PUT
+        if (dados.nome() != null) {
+            curso.get().setNome(dados.nome());
+        }
 
-        curso.get().setNome(dados.nome());
-        curso.get().setDescricao(dados.descricao());
-        curso.get().setCargaHoraria(dados.cargaHoraria());
-        curso.get().setStatus(dados.status());
+        if (dados.descricao() != null) {
+            curso.get().setDescricao(dados.descricao());
+        }
+
+        if (dados.cargaHoraria() != null) {
+            curso.get().setCargaHoraria(dados.cargaHoraria());
+        }
+
+        if (dados.status() != null) {
+            curso.get().setStatus(dados.status());
+        }
+
+        if (dados.dataCriacao() != null) {
+            curso.get().setDataCriacao(dados.dataCriacao());
+        }
 
         return new CursoDTO(cursoRepo.save(curso.get()));
     }
