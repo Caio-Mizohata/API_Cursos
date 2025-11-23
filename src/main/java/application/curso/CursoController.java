@@ -18,7 +18,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/cursos")
-@Tag(name = "Cursos", description = "Endpoints para gerenciamento de cursos")
+@Tag(name = "Cursos", description = "Operações de inserção, consulta, atualização e exclusão de cursos no endpoint /cursos")
 public class CursoController {
     @Autowired
     private CursoService cursoService;
@@ -41,14 +41,14 @@ public class CursoController {
     }
 
     @PostMapping
-    @Operation(summary = "Inserir um novo curso", description = "Adiciona um novo curso ao sistema com os dados fornecidos.")
+    @Operation(summary = "Inserir um novo registro de um curso", description = "Adiciona um novo curso ao sistema com os dados fornecidos.")
     @ApiResponse(responseCode = "201", description = "Curso inserido com sucesso")
     public CursoDTO insert(@RequestBody CursoInsertDTO dados) {
         return cursoService.insert(dados);  
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Atualizar um curso existente", description = "Atualiza os dados de um curso existente pelo seu ID.")
+    @Operation(summary = "Atualizar um registro de curso existente", description = "Atualiza os dados de um curso existente pelo seu ID.")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Curso atualizado com sucesso"),
         @ApiResponse(responseCode = "404", description = "Curso não encontrado")
@@ -58,7 +58,7 @@ public class CursoController {
     }  
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Excluir um curso", description = "Remove um curso do sistema pelo seu ID.")
+    @Operation(summary = "Excluir um registro de curso", description = "Remove um curso do sistema pelo seu ID.")
     @ApiResponses({
         @ApiResponse(responseCode = "204", description = "Curso excluído com sucesso"),
         @ApiResponse(responseCode = "404", description = "Curso não encontrado")

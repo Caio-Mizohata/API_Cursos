@@ -1,10 +1,18 @@
 package application.matricula;
 
 import java.time.LocalDate;
-import application.aluno.Aluno; 
-import application.curso.Curso; 
+import application.aluno.Aluno;
+import application.curso.Curso;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
