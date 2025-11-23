@@ -1,0 +1,35 @@
+@url = https://solid-space-carnival-6jxv97x4wq7crj94-8080.app.github.dev/matriculas
+
+###
+GET {{url}}
+Accept: application/json
+
+###
+GET {{url}}/1
+Accept: application/json
+
+### 
+POST {{url}}
+Content-Type: application/json
+
+{
+  "status": "Ativo",
+  "dataMatricula": "2024-06-01",
+  "alunoId": 1,
+  "cursoId": 1
+}
+
+###
+PUT {{url}}/1
+Content-Type: application/json
+
+{
+  "status": "Ativo",
+  "dataMatricula": "2024-06-01",
+  "alunoId": 1,
+  "cursoId": 1
+}
+
+### 
+DELETE {{url}}/1
+Accept: application/json

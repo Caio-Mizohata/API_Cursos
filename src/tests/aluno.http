@@ -1,0 +1,33 @@
+@url = https://solid-space-carnival-6jxv97x4wq7crj94-8080.app.github.dev/alunos
+
+### 
+GET {{url}}
+Accept: application/json
+
+###
+GET {{url}}/1
+Accept: application/json
+
+### 
+POST {{url}}
+Content-Type: application/json
+
+{
+  "nome": "Kleber",
+  "email": "kleber@example.com",
+  "telefone": "+55123456789",
+  "dataMatricula": "2024-06-01"
+}
+
+###
+
+PUT {{url}}/7
+Content-Type: application/json
+
+{
+    "telefone": "+55987654321"
+}
+
+###
+DELETE {{url}}/7
+Accept: application/json

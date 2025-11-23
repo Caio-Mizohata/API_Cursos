@@ -1,0 +1,33 @@
+@url = https://solid-space-carnival-6jxv97x4wq7crj94-8080.app.github.dev/cursos
+
+###
+GET {{url}}
+Accept: application/json
+
+###
+GET {{url}}/1
+Accept: application/json
+
+### 
+POST {{url}}
+Content-Type: application/json
+
+{
+    "nome": "Big Data no Agronegócio",
+    "descricao": "Ciência de Dados para o Agronegócio",
+    "cargaHoraria": 2500,
+    "status": "ATIVO",
+    "dataCriacao": "2017-01-01T00:00:00"
+}
+
+###
+PUT {{url}}/1
+Content-Type: application/json
+
+{
+    "status": "Encerrado"
+}
+
+### 
+DELETE {{url}}/3
+Accept: application/json
