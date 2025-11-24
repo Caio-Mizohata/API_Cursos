@@ -1,0 +1,9 @@
+@url = https://solid-space-carnival-6jxv97x4wq7crj94-8080.app.github.dev/auth
+
+POST {{url}}
+Content-Type: application/json
+
+{
+    "nomeDeUsuario": "admin",
+    "senha": "admin"
+}

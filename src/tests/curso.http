@@ -1,16 +1,20 @@
 @url = https://solid-space-carnival-6jxv97x4wq7crj94-8080.app.github.dev/cursos
 
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBZmVyaWNvZXMgQVBJIiwic3ViIjoiYWRtaW4iLCJleHAiOjE3NjM5NjI0OTJ9.TVRT8fF0PuROcd5_tYE3ztLa24vSkU1Ns6JkzA-2jfA
+
 ###
 GET {{url}}
 Accept: application/json
-
+Authorization: Bearer {{token}}
 ###
 GET {{url}}/1
 Accept: application/json
+Authorization: Bearer {{token}}
 
 ### 
 POST {{url}}
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "nome": "Big Data no Agronegócio",
@@ -23,6 +27,7 @@ Content-Type: application/json
 ###
 PUT {{url}}/1
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "status": "Encerrado"
@@ -31,3 +36,4 @@ Content-Type: application/json
 ### 
 DELETE {{url}}/3
 Accept: application/json
+Authorization: Bearer {{token}}
